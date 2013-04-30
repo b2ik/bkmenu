@@ -1,7 +1,9 @@
-/* bkmenu jQuery dropdown menu plugin
-/* version 0.1
-/* Author: b2ik ( https://github.com/b2ik )
-/* License: MIT License (more info http://en.wikipedia.org/wiki/MIT_License)
+/* Name:         bkmenu
+/* Description:  jQuery dropdown menu plugin
+/* Version:      0.1
+/* Author:       b2ik ( https://github.com/b2ik )
+/* Git:          https://github.com/b2ik/bkmenu.git
+/* License:      MIT License (more info http://en.wikipedia.org/wiki/MIT_License)
 /* 
 /**/
 (function($) {
