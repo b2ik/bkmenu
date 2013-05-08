@@ -1,6 +1,6 @@
 /* Name:         bkmenu
 /* Description:  jQuery dropdown menu plugin
-/* Version:      0.1
+/* Version:      0.1.1
 /* Author:       b2ik ( https://github.com/b2ik )
 /* Git:          https://github.com/b2ik/bkmenu.git
 /* License:      MIT License (more info http://en.wikipedia.org/wiki/MIT_License)
@@ -28,6 +28,7 @@
       'afterShow'            : function(){},
       'beforeHide'           : function(){},
       'afterHide'            : function(){},
+			'showRootContentTiming': 10,
       'showContentTiming'    : 100,
       'hideMenuTiming'       : 600,
     }, options);
@@ -56,15 +57,18 @@
 		
 		menu.itemSelect = function(){
 			var showTiming = settings.showContentTiming;
+			var aparentLi  = null;
 			clearTimeout(menutimers.itemContentShow);
       if ($("html").hasClass("not-selectable")) return false;
 			menuCurrentItem.addClass(settings.classSelected);
 			menuCurrent = menuCurrentItem.parents('.' + settings.classMenuContent).eq(0);
 			if (menuCurrent.length < 1) { 
 			  menuCurrent = menu;
-				showTiming = 10;
+				showTiming = settings.showRootContentTiming;
 			}
       menuCurrent.find('li').not(menuCurrentItem).removeClass(settings.classSelected).removeClass('hascontent');
+			aparentLi = menuCurrent.parent('li');
+			if(!aparentLi.hasClass(settings.classSelected)) aparentLi.removeClass(settings.classSelected + " hascontent").addClass(settings.classSelected + " hascontent");
       menuCurrentItemContent = menuCurrentItem.children('.' + settings.classMenuContent);
 			menutimers.itemContentShow = setTimeout(menu.showContent, showTiming);
 			settings.afterSelect(menuCurrentItem, menuCurrentItemContent, menu.callbackInit);           // call user function
